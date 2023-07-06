@@ -1,0 +1,21 @@
+<div id="home" class="flex">
+  <div
+    id="menu"
+    class="border-r-2 pr-3"
+    hx-swap="innerHTML"
+    hx-target="#content"
+  >
+    <ul class="list-disc list-inside">
+      <li class="hover:dark:bg-slate-800">
+        <a class="cursor-pointer" hx-get="/frameworks">Frameworks</a>
+      </li>
+      <li class="hover:dark:bg-slate-800">
+        <a class="cursor-pointer" hx-get="/movies">Movies</a>
+      </li>
+      <li class="hover:dark:bg-slate-800">
+        <a class="cursor-pointer" hx-get="/people">People</a>
+      </li>
+    </ul>
+  </div>
+  <div id="content" class="flex-1 pl-3"></div>
+</div>

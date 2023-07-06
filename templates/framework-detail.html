@@ -1,0 +1,91 @@
+<form
+  id="framework-detail"
+  class="flex flex-col gap-6 mx-auto px-4"
+  {{if eq .Method "PATCH"}}
+  hx-patch="/framework/{{.Framework.ID}}"
+  {{else if eq .Method "POST"}}
+  hx-post="/framework"
+  {{end}}
+  hx-target="this"
+  hx-swap="outerHTML"
+  hx-ext="checkbox-enc"
+>
+  <div class="flex content-center justify-between gap-1 {{if .ReadOnly}}pointer-events-none{{end}}">
+    <label for="name" class="basis-1/4 font-semibold">Name</label>
+    <input
+      class="basis-3/4 p-1 border-solid border rounded-md border-black dark:border-white dark:bg-slate-800 dark:hover:bg-slate-900 dark:focus:bg-slate-900 dark:read-only:bg-inherit dark:read-only:border-transparent"
+      id="name"
+      name="name"
+      type="text"
+      autocomplete="off"
+      value="{{.Framework.Name}}"
+      {{if
+      .ReadOnly}}readonly{{end}}
+    />
+  </div>
+  <div class="flex content-center justify-between gap-1 {{if .ReadOnly}}pointer-events-none{{end}}">
+    <label for="description" class="basis-1/4 font-semibold">Description</label>
+    <textarea
+      id="description"
+      name="description"
+      class="basis-3/4 resize-none p-1 border-solid border rounded-md border-black dark:border-white dark:bg-slate-800 dark:hover:bg-slate-900 dark:focus:bg-slate-900 dark:read-only:bg-inherit dark:read-only:border-transparent"
+      type="text"
+      rows="4"
+      {{if
+      .ReadOnly}}readonly{{end}}
+    >
+{{.Framework.Description}}</textarea
+    >
+  </div>
+  <div
+    class="flex content-center justify-between gap-1 {{if .ReadOnly}}pointer-events-none{{end}}"
+  >
+    <label for="is_poop" class="basis-1/4 font-semibold">&#x1F4A9;?</label>
+    <div class="basis-3/4">
+      <input
+        id="is_poop"
+        name="is_poop"
+        class="w-8 h-8 cursor-pointer"
+        type="checkbox"
+        {{if
+        .Framework.IsPoop}}checked{{end}}
+        {{if
+        .ReadOnly}}readonly{{end}}
+      />
+    </div>
+  </div>
+  <div class="flex gap-2 justify-end">
+    {{if .Buttons.Back}}
+    <button
+      class="rounded-sm px-4 py-2 mr-2 text-sky-500 border border-sky-500 hover:text-sky-600 hover:border-sky-600"
+      hx-get="/frameworks"
+    >
+      BACK
+    </button>
+    {{end}}
+    <!--  -->
+    {{if .Buttons.Cancel}}
+    <button
+      class="rounded-sm px-4 py-2 mr-2 text-sky-500 border border-sky-500 hover:text-sky-600 hover:border-sky-600"
+      hx-get="/framework/{{.Framework.ID}}"
+    >
+      CANCEL
+    </button>
+    {{end}}
+    <!--  -->
+    {{if .Buttons.Edit}}
+    <button
+      class="rounded-sm px-4 py-2 mr-2 bg-sky-500 hover:bg-sky-600"
+      hx-get="/framework/{{.Framework.ID}}/edit"
+    >
+      EDIT
+    </button>
+    {{end}}
+    <!--  -->
+    {{if .Buttons.Save}}
+    <button class="rounded-sm px-4 py-2 mr-2 bg-sky-500 hover:bg-sky-600">
+      SAVE
+    </button>
+    {{end}}
+  </div>
+</form>
